@@ -16,10 +16,6 @@ def prompt_llm(prompt: str):
             "model": "LLaMA_CPP",
             "messages": [
                 {
-                    "role": "system",
-                    "content": SYSTEM_PROMPT
-                },
-                {
                     "role": "user",
                     "content": prompt
                 }
