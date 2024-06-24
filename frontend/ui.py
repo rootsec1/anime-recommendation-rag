@@ -4,7 +4,7 @@ import requests
 
 def get_bot_response(user_message: str) -> str:
     # Function to call the FastAPI backend
-    api_url = "http://127.0.0.1:8000/recommend-anime"  # Replace with your backend URL
+    api_url = st.secrets["BACKEND_API_HOST"]
     response = requests.post(
         api_url,
         json={"prompt": user_message}

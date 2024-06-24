@@ -163,3 +163,5 @@ cython_debug/
 *.llamafile
 .DS_Store
 /chroma
+
+.streamlit/secrets.toml
