@@ -4,14 +4,17 @@ FROM python:3.9-slim
 # Set the working directory
 WORKDIR /app
 
+# Install gcc and python3-dev
+RUN apt-get update && apt-get install -y gcc python3-dev
+
 # Copy the requirements file into the container
-COPY backend/requirements.txt .
+COPY requirements.txt .
 
 # Install any dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the backend code into the container
-COPY backend /app/backend
+COPY backend/ /app/
 
 # Build argument for MODEL_URL
 ARG MODEL_URL
@@ -23,4 +26,4 @@ ENV MODEL_URL=${MODEL_URL}
 EXPOSE 8000
 
 # Command to run the FastAPI server
-CMD ["fastapi", "run", "backend/server.py"]
+CMD ["fastapi", "run", "/app/server.py"]

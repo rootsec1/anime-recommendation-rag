@@ -35,7 +35,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/anime-recommendation-backend:latest
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/anime-recommendation-backend:latest
+            ${{ secrets.DOCKER_USERNAME }}/anime-recommendation-backend:${{ github.sha }}
           build-args: |
             MODEL_URL=${{ secrets.MODEL_URL }}
 
