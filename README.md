@@ -29,3 +29,11 @@ chmod +x llava-v1.5-7b-q4.llamafile
 
 7. When you're done chatting, return to your terminal and hit
 `Control-C` to shut down llamafile.
+
+## Dockerfile
+
+[Dockerhub link](https://hub.docker.com/r/abhishekwl/anime-recommendation-backend)
+
+## Screenshot
+
+<img width="771" alt="Screenshot 2024-06-29 at 4 08 38 PM" src="https://github.com/rootsec1/anime-recommendation-rag/assets/20264867/961efd88-f877-46e9-9de6-1937392396e2">
