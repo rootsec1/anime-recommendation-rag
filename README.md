@@ -1,5 +1,7 @@
 ## Anime Recommender RAG based LLM
 
+![Pipeline Status](https://github.com/rootsec1/anime-recommendation-rag/actions/workflows/build-docker-image.yml/badge.svg)
+
 Still trying to find a name
 
 ## Quickstart
@@ -9,8 +11,8 @@ Still trying to find a name
 2. Open your computer's terminal.
 
 3. If you're using macOS, Linux, or BSD, you'll need to grant permission
-for your computer to execute this new file. (You only need to do this
-once.)
+   for your computer to execute this new file. (You only need to do this
+   once.)
 
 ```sh
 chmod +x llava-v1.5-7b-q4.llamafile
@@ -25,10 +27,10 @@ chmod +x llava-v1.5-7b-q4.llamafile
 ```
 
 6. Your browser should open automatically and display a chat interface.
-(If it doesn't, just open your browser and point it at http://localhost:8080)
+   (If it doesn't, just open your browser and point it at http://localhost:8080)
 
 7. When you're done chatting, return to your terminal and hit
-`Control-C` to shut down llamafile.
+   `Control-C` to shut down llamafile.
 
 ## Dockerfile
 

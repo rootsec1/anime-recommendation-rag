@@ -33,8 +33,10 @@ async def recommend_anime(req: Request):
         data = await req.json()
         prompt = data["prompt"]
         # Remove stopwords from prompt
-        cleaned_prompt = " ".join([word for word in str(prompt).split()
-                                   if word.lower() not in STOP_WORDS])
+        cleaned_prompt = " ".join(
+            [word for word in str(prompt).split()
+             if word.lower() not in STOP_WORDS]
+        )
         # Search for similar documents
         similar_docs = chroma_collection.query(
             query_texts=[cleaned_prompt],
