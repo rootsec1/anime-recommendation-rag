@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.9.6"
+          python-version: "3.9.7"
 
       - name: Install autopep8
         run: |
@@ -32,7 +32,7 @@ jobs:
           git diff --exit-code
         continue-on-error: false
 
-  lint:
+  lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
