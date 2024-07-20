@@ -7,6 +7,7 @@ from unittest.mock import patch
 # Initialize TestClient with the FastAPI app for testing
 client = TestClient(app)
 
+
 def test_health_check():
     """
     Test the health check endpoint to ensure it's working correctly.
@@ -18,6 +19,7 @@ def test_health_check():
     # Assert that the response JSON matches the expected output
     assert response.json() == {"ping": "pong"}
 
+
 @pytest.fixture
 def mock_chroma_collection():
     """
@@ -27,6 +29,7 @@ def mock_chroma_collection():
     with patch('backend.server.chroma_collection', autospec=True) as mock_chroma_collection:
         yield mock_chroma_collection
 
+
 @pytest.fixture
 def mock_prompt_llm():
     """
@@ -35,6 +38,7 @@ def mock_prompt_llm():
     # Use patch to mock the prompt_llm function in the backend.server module
     with patch('backend.server.prompt_llm') as mock_prompt_llm:
         yield mock_prompt_llm
+
 
 def test_recommend_anime(mock_chroma_collection, mock_prompt_llm):
     """
@@ -59,7 +63,8 @@ def test_recommend_anime(mock_chroma_collection, mock_prompt_llm):
 
     # Assert that the chroma_collection.query method was called once with the correct arguments
     mock_chroma_collection.query.assert_called_once()
-    assert mock_chroma_collection.query.call_args[1]['query_texts'] == ["test prompt"]
+    assert mock_chroma_collection.query.call_args[1]['query_texts'] == [
+        "test prompt"]
 
     # Assert that the prompt_llm function was called once with the correct arguments
     templated_user_prompt = USER_PROMPT.format(
@@ -68,6 +73,7 @@ def test_recommend_anime(mock_chroma_collection, mock_prompt_llm):
         question="test prompt"
     )
     mock_prompt_llm.assert_called_once_with(templated_user_prompt)
+
 
 def test_recommend_anime_exception(mock_chroma_collection):
     """
