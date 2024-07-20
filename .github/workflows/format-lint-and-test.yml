@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.9.7"
+          python-version: "3.9"
 
       - name: Install autopep8
         run: |
@@ -42,7 +42,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: "3.9.6"
+          python-version: "3.9"
 
       - name: Lint backend code
         uses: wearerequired/lint-action@v2
