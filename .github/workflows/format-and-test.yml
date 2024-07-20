@@ -76,4 +76,4 @@ jobs:
       - name: Run tests
         uses: pavelzw/pytest-action@v2
         with:
-          custom-arguments: --disable-pytest-warnings
+          custom-arguments: "--disable-pytest-warnings"
