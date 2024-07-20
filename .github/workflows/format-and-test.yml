@@ -25,7 +25,6 @@ jobs:
       - name: Lint backend code
         uses: wearerequired/lint-action@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           autopep8: true
           autopep8_dir: backend
           auto_fix: true
@@ -33,7 +32,6 @@ jobs:
       - name: Lint frontend code
         uses: wearerequired/lint-action@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           autopep8: true
           autopep8_dir: frontend
           auto_fix: true
