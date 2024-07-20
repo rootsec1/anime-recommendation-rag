@@ -29,13 +29,6 @@ jobs:
           autopep8_dir: backend
           auto_fix: true
 
-      - name: Lint frontend code
-        uses: wearerequired/lint-action@v2
-        with:
-          autopep8: true
-          autopep8_dir: frontend
-          auto_fix: true
-
       - name: Run tests
         run: |
           PYTHONPATH=. pytest backend/test_server.py --disable-pytest-warnings -v
