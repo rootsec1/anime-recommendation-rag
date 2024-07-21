@@ -1,8 +1,13 @@
+from better_profanity import profanity
+
 import streamlit as st
 import requests
 
+profanity.load_censor_words()
+
 
 def get_bot_response(user_message: str) -> str:
+    user_message = str(profanity.censor(user_message)).strip()
     """
     Calls the FastAPI backend with a user message and returns the bot's response.
 
@@ -21,7 +26,13 @@ def get_bot_response(user_message: str) -> str:
     )
     # If the request is successful, return the recommendation; otherwise, return an error message
     if response.ok:
-        return (response.json()).get("recommendation", "Sorry, I couldn't find a recommendation.")
+        censored_response = profanity.censor(
+            response.json().get(
+                "recommendation",
+                "Sorry, I couldn't find a recommendation."
+            )
+        )
+        return str(censored_response).strip()
     else:
         return "Error: Unable to get a recommendation from the backend."
 
