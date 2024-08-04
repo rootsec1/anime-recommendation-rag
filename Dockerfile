@@ -27,4 +27,4 @@ ENV PYTHONPATH=/app
 EXPOSE 8000
 
 # Command to run the FastAPI server
-CMD ["fastapi", "run", "/app/server.py"]
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
