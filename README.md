@@ -73,6 +73,8 @@ pip install -r requirements.txt
 
 ```sh
 PYTHONPATH=. fastapi dev backend/server.py
+(or run using the Docker image)
+docker run --platform linux/x86_64 -e MODEL_URL=http://127.0.0.1:8080/v1/chat/completions -p 8000:8000 --network="host" abhishekwl/anime-recommendation-backend
 ```
 
 2. Start the streamlit frontend application
@@ -95,3 +97,33 @@ PYTHONPATH=. pytest backend/test_server.py --disable-pytest-warnings -v
 ## Application Screenshots
 
 <img width="771" alt="Screenshot 2024-06-29 at 4 08 38 PM" src="https://github.com/rootsec1/anime-recommendation-rag/assets/20264867/961efd88-f877-46e9-9de6-1937392396e2">
+
+### Performance Report (Load Testing using Locust)
+
+| Type | Name             | Request Count | Failure Count | Median Response Time | Average Response Time | Min Response Time | Max Response Time | Average Content Size | Requests/s | Failures/s | 50%    | 66%    | 75%    | 80%    | 90%    | 95%    | 98%    | 99%    | 99.9%  | 99.99% | 100%   |
+| ---- | ---------------- | ------------- | ------------- | -------------------- | --------------------- | ----------------- | ----------------- | -------------------- | ---------- | ---------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| GET  | /                | 386           | 0             | 5000.0               | 5100.0                | 4900.0            | 5200.0            | 0.0                  | 7.5583     | 0.0        | 5000   | 5050   | 5100   | 5120   | 5150   | 5180   | 5190   | 5195   | 5200   | 5200   | 5200   |
+| POST | /recommend-anime | 54            | 0             | 155000.0             | 151417.85             | 71608.70          | 227882.48         | 1821.0               | 0.237      | 0.0        | 155000 | 155000 | 228000 | 228000 | 228000 | 228000 | 228000 | 228000 | 228000 | 228000 | 228000 |
+|      | Aggregated       | 440           | 0             | 155000.0             | 26668.36              | 4900.0            | 227882.48         | 1821.0               | 7.7953     | 0.0        | 5000   | 5050   | 228000 | 228000 | 228000 | 228000 | 228000 | 228000 | 228000 | 228000 | 228000 |
+
+This performance report summarizes the results of load testing conducted on our API endpoints using Locust. The tests were performed on a MacBook Air with the following specifications:
+
+```plaintext
+Hardware Overview:
+
+   Model Name: MacBook Air
+   Model Identifier: Mac14,2
+   Chip: Apple M2
+   Total Number of Cores: 8 (4 performance and 4 efficiency)
+   Memory: 16 GB
+   System Firmware Version: 10151.121.1
+   OS Loader Version: 10151.121.1
+```
+
+This setup was used to assess the API's responsiveness and reliability under concurrent requests.
+
+- **GET `/` Endpoint**: The health check endpoint was tested with 386 requests. The average response time was approximately 5.1 seconds, with no failures, showcasing consistent performance under load.
+
+- **POST `/recommend-anime` Endpoint**: The recommendation endpoint was tested with 54 requests. The response times exhibited significant variance, with a median of 155 seconds. Despite the higher latency, the endpoint successfully handled all requests without any failures.
+
+The test results indicate that the system can handle multiple requests concurrently without errors, though optimizations may be required to reduce response times for the recommendation endpoint under heavier loads.

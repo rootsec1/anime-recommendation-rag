@@ -22,9 +22,10 @@ ARG MODEL_URL
 # Set environment variables
 ENV MODEL_URL=${MODEL_URL}
 ENV PYTHONPATH=/app
+ENV TOKENIZERS_PARALLELISM=false
 
 # Expose the port FastAPI is running on
 EXPOSE 8000
 
 # Command to run the FastAPI server
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["fastapi", "run", "/app/server.py"]
