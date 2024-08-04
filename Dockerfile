@@ -21,6 +21,7 @@ ARG MODEL_URL
 
 # Set environment variables
 ENV MODEL_URL=${MODEL_URL}
+ENV PYTHONPATH=/app
 
 # Expose the port FastAPI is running on
 EXPOSE 8000
