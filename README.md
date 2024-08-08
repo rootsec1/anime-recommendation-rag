@@ -9,7 +9,7 @@
 
 ## Final Demo Video
 
-[click here](https://www.loom.com/share/7b3b3b3b1b7e4b3e8)
+[click here](https://duke.box.com/s/6ie1vld6z2693xd3b1uttvl5ojf4l09r)
 
 ## Project Purpose
 
